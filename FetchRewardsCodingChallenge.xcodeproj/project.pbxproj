@@ -14,9 +14,11 @@
 		790B199D271E45FA00A42BD0 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B199C271E45FA00A42BD0 /* Meal.swift */; };
 		790B199F271E460200A42BD0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B199E271E460200A42BD0 /* Ingredient.swift */; };
 		790B19A1271E4A3600A42BD0 /* MealListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A0271E4A3600A42BD0 /* MealListVC.swift */; };
+		790B19A3271E526600A42BD0 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A2271E526600A42BD0 /* MealCell.swift */; };
+		790B19A5271E672800A42BD0 /* MealSerializationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A4271E672800A42BD0 /* MealSerializationTest.swift */; };
+		790B19A8271E941400A42BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79DFC94F271DF79600EA3F0C /* Assets.xcassets */; };
 		79DFC947271DF79400EA3F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC946271DF79400EA3F0C /* AppDelegate.swift */; };
 		79DFC949271DF79400EA3F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC948271DF79400EA3F0C /* SceneDelegate.swift */; };
-		79DFC950271DF79600EA3F0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79DFC94F271DF79600EA3F0C /* Assets.xcassets */; };
 		79DFC953271DF79600EA3F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79DFC951271DF79600EA3F0C /* LaunchScreen.storyboard */; };
 		79DFC960271DFBB000EA3F0C /* FRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC95F271DFBB000EA3F0C /* FRTabBarController.swift */; };
 		79DFC963271DFC5F00EA3F0C /* CategoriesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC962271DFC5F00EA3F0C /* CategoriesListVC.swift */; };
@@ -36,6 +38,8 @@
 		790B199C271E45FA00A42BD0 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		790B199E271E460200A42BD0 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		790B19A0271E4A3600A42BD0 /* MealListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListVC.swift; sourceTree = "<group>"; };
+		790B19A2271E526600A42BD0 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
+		790B19A4271E672800A42BD0 /* MealSerializationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSerializationTest.swift; sourceTree = "<group>"; };
 		79DFC943271DF79400EA3F0C /* FetchRewardsCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchRewardsCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79DFC946271DF79400EA3F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79DFC948271DF79400EA3F0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				790B1992271E2AED00A42BD0 /* CategoryCell.swift */,
+				790B19A2271E526600A42BD0 /* MealCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				79DFC966271DFE7000EA3F0C /* Category.swift */,
 				790B199C271E45FA00A42BD0 /* Meal.swift */,
 				790B199E271E460200A42BD0 /* Ingredient.swift */,
+				790B19A4271E672800A42BD0 /* MealSerializationTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,8 +266,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				790B19A8271E941400A42BD0 /* Assets.xcassets in Resources */,
 				79DFC953271DF79600EA3F0C /* LaunchScreen.storyboard in Resources */,
-				79DFC950271DF79600EA3F0C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +280,7 @@
 			files = (
 				79DFC971271E13FE00EA3F0C /* FRBodyLabel.swift in Sources */,
 				79DFC963271DFC5F00EA3F0C /* CategoriesListVC.swift in Sources */,
+				790B19A5271E672800A42BD0 /* MealSerializationTest.swift in Sources */,
 				79DFC947271DF79400EA3F0C /* AppDelegate.swift in Sources */,
 				79DFC965271DFC8800EA3F0C /* FavoritesListVC.swift in Sources */,
 				790B199A271E39C000A42BD0 /* UIView+Ext.swift in Sources */,
@@ -284,6 +291,7 @@
 				790B19A1271E4A3600A42BD0 /* MealListVC.swift in Sources */,
 				79DFC949271DF79400EA3F0C /* SceneDelegate.swift in Sources */,
 				79DFC960271DFBB000EA3F0C /* FRTabBarController.swift in Sources */,
+				790B19A3271E526600A42BD0 /* MealCell.swift in Sources */,
 				790B199D271E45FA00A42BD0 /* Meal.swift in Sources */,
 				79DFC974271E1E9500EA3F0C /* FRError.swift in Sources */,
 				790B1996271E2CF500A42BD0 /* FRMealImageView.swift in Sources */,
@@ -427,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7VVA7JF63G;
@@ -445,7 +454,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -454,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7VVA7JF63G;
@@ -472,7 +482,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

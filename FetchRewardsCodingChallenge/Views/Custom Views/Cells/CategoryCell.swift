@@ -34,7 +34,6 @@ class CategoryCell: UITableViewCell {
     
     private func configure() {
         addSubviews(categoryImageView, categoryLabel, categoryDescriptionLabel)
-        accessoryType = .disclosureIndicator
         let padding: CGFloat = 12
         
         NSLayoutConstraint.activate([
@@ -51,7 +50,7 @@ class CategoryCell: UITableViewCell {
             categoryDescriptionLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor),
             categoryDescriptionLabel.leadingAnchor.constraint(equalTo: categoryImageView.trailingAnchor, constant: 12),
             categoryDescriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            categoryDescriptionLabel.heightAnchor.constraint(equalToConstant: 14 )
+            categoryDescriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding)
         ])
     }
 } // END OF CLASS

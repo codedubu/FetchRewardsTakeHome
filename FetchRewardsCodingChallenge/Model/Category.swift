@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResults: Decodable {
+struct CategorySearchResults: Decodable {
     
     let categories: [Category]
 } // END OF STRUCT

@@ -12,10 +12,12 @@ class FRMealImageView: UIImageView {
     let cache = NetworkManager.shared.cache
     //placeholder
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -23,8 +25,9 @@ class FRMealImageView: UIImageView {
     
     
     private func configure() {
-        layer.cornerRadius = 10
-        clipsToBounds = true
+        layer.cornerRadius  = 40
+        clipsToBounds       = true
+        contentMode         = .scaleAspectFit
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -35,5 +38,4 @@ class FRMealImageView: UIImageView {
             DispatchQueue.main.async { self.image = image }
         }
     }
-    
-}
+} // END OF CLASS

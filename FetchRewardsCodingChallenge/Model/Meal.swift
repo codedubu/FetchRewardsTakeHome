@@ -7,18 +7,21 @@
 
 import Foundation
 
+struct MealSearchResults: Decodable {
+    
+    let meals: [Meal]
+} // END OF STRUCT
+
+
 struct Meal: Decodable {
     
-    let meal: String
+    let name: String
     let thumbnail: String
     let id: String
-    let mealIngredients: [Ingredient]
-    
     
     private enum CodingKeys: String, CodingKey {
-        case meal               = "strMeal"
+        case name               = "strMeal"
         case thumbnail          = "strMealThumb"
         case id                 = "idMeal"
-        case mealIngredients    = "mealIngredients"
     }
 } // END OF STRUCT

@@ -7,8 +7,13 @@
 
 import Foundation
 
+struct IngredientTopLevelObjects: Decodable {
+
+    let ingredients: [Ingredient]
+} // END OF STRUCT
+
 struct Ingredient: Decodable {
-    
+
     let id: String?
     let meal: String?
     let category: String?
@@ -58,8 +63,8 @@ struct Ingredient: Decodable {
     let measurement19: String?
     let measurement20: String?
     let source: String?
-    
-    
+
+
     private enum CodingKeys: String, CodingKey {
         case id             = "idMeal"
         case meal           = "strMeal"

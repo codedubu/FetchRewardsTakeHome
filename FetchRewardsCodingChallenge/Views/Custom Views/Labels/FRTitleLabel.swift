@@ -30,8 +30,9 @@ class FRTitleLabel: UILabel {
     private func configure() {
         textColor                   = .label
         adjustsFontSizeToFitWidth   = true
-        minimumScaleFactor          = 0.9
-        lineBreakMode               = .byTruncatingTail
+        minimumScaleFactor          = 0.7
+        lineBreakMode               = .byWordWrapping
+        numberOfLines               = 0
         translatesAutoresizingMaskIntoConstraints = false
     }
 } // END OF CLASS

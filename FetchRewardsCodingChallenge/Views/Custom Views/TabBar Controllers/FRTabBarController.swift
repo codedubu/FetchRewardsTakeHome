@@ -11,7 +11,7 @@ class FRTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().tintColor = .systemBackground
+        UITabBar.appearance().tintColor = .systemPurple
         self.viewControllers = [createCategoriesNC(), createFavoritesNC()]
     }
     
@@ -31,6 +31,5 @@ class FRTabBarController: UITabBarController {
         favoritesListVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         
         return UINavigationController(rootViewController: favoritesListVC)
-        
     }
 } // END OF CLASS

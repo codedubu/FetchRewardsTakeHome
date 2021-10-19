@@ -9,10 +9,11 @@ import UIKit
 
 class CategoriesListVC: UIViewController {
     
-    let tableView                         = UITableView()
-    var category: [Category]              = []
+    private let tableView                 = UITableView()
+    var categories: [Category]            = []
     var filteredCategories: [Category]    = []
-    var categories: Category?
+    var category: Category?
+    private var isSearching               = false
     
 
     override func viewDidLoad() {
@@ -28,14 +29,14 @@ class CategoriesListVC: UIViewController {
     }
     
     
-    func configureViewController() {
-        view.backgroundColor = .systemBackground
+    private func configureViewController() {
         title = "Categories"
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
-    func configureTableView() {
+    private func configureTableView() {
         view.addSubview(tableView)
         
         tableView.frame = view.bounds
@@ -49,12 +50,12 @@ class CategoriesListVC: UIViewController {
     
     
     func getAllCategories() {
-        NetworkManager.shared.getMealsBy(categoryID: categories?.id ?? "") { [weak self] result in
+        NetworkManager.shared.getAllMealCategories(categoryID: category?.id ?? "") { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success(let category):
-                self.category = category
+                self.categories = category.sorted { $0.name < $1.name }
                 self.tableView.reloadDataOnMainThread()
                 
             case .failure(let error):
@@ -69,15 +70,26 @@ class CategoriesListVC: UIViewController {
 extension CategoriesListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return category.count
+        return categories.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseID) as! CategoryCell
-        let category = self.category[indexPath.row]
+        let category = self.categories[indexPath.row]
         cell.set(category: category)
         
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let activeArray = isSearching ? filteredCategories : categories
+        let category = activeArray[indexPath.row]
+        
+        let destinationVC = MealListVC()
+        destinationVC.category = category
+        
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
 } //END OF EXTENSION
