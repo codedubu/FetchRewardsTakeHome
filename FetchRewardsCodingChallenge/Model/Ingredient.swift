@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IngredientTopLevelObjects: Decodable {
+struct IngredientSearchResult: Decodable {
 
     let ingredients: [Ingredient]
 } // END OF STRUCT

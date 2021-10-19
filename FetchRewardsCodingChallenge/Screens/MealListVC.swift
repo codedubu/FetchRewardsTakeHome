@@ -46,10 +46,10 @@ class MealListVC: FRActivityIndicatorVC {
     
     
     func getAllMeals() {
-        guard let mealID = category?.name else { return }
+        guard let mealName = category?.name else { return }
         showActivityIndicator()
         
-        NetworkManager.shared.getAllMeals(mealID: mealID) { [weak self] result in
+        NetworkManager.shared.getAllMeals(meal: mealName) { [weak self] result in
             guard let self = self else { return }
             self.dismissActivityIndicator()
             
@@ -80,5 +80,14 @@ extension MealListVC: UITableViewDataSource, UITableViewDelegate {
         cell.set(meal: meal)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meal = meals[indexPath.row]
+        
+        let destinationVC = MealDetailVC()
+        destinationVC.meal = meal
+        
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
 } // END OF EXTENSION

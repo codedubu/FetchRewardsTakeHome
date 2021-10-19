@@ -8,8 +8,6 @@
 import UIKit
 
 class NetworkManager {
-    // https://www.themealdb.com/api/json/v1/1/categories.php
-    // https://www.themealdb.com/api/json/v1/1/filter.php?c=beef
     
     static let shared                   = NetworkManager()
     let cache                           = NSCache<NSString, UIImage>()
@@ -19,7 +17,7 @@ class NetworkManager {
     private let apiKey                  = "1"
     private let categoryComponent       = "categories.php"
     private let filterComponent         = "filter.php"
-    private let lookupComponent         = "lookup"
+    private let lookupComponent         = "lookup.php"
     private let mealIDComponent         = "i"
     private let categorySearchComponent = "c"
     
@@ -27,11 +25,11 @@ class NetworkManager {
     func getAllMealCategories(categoryID: String, completion: @escaping (Result<[Category], FRError>) -> Void) {
         guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
         
-        let versionURL = baseURL.appendingPathComponent(versionComponent)
-        let keyURL = versionURL.appendingPathComponent(apiKey)
+        let versionURL  = baseURL.appendingPathComponent(versionComponent)
+        let keyURL      = versionURL.appendingPathComponent(apiKey)
         let categoryURL = keyURL.appendingPathComponent(categoryComponent)
         
-        let components = URLComponents(url: categoryURL, resolvingAgainstBaseURL: true)
+        let components  = URLComponents(url: categoryURL, resolvingAgainstBaseURL: true)
         
         guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
         print(finalURL)
@@ -71,15 +69,15 @@ class NetworkManager {
     }
     
     
-    func getAllMeals(mealID: String, completion: @escaping (Result<[Meal], FRError>) -> Void) {
+    func getAllMeals(meal: String, completion: @escaping (Result<[Meal], FRError>) -> Void) {
         guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
         
-        let versionURL = baseURL.appendingPathComponent(versionComponent)
-        let keyURL = versionURL.appendingPathComponent(apiKey)
-        let filterURL = keyURL.appendingPathComponent(filterComponent)
+        let versionURL  = baseURL.appendingPathComponent(versionComponent)
+        let keyURL      = versionURL.appendingPathComponent(apiKey)
+        let filterURL   = keyURL.appendingPathComponent(filterComponent)
         
-        let mealIDQuery = URLQueryItem(name: categorySearchComponent, value: mealID)
-        var components = URLComponents(url: filterURL, resolvingAgainstBaseURL: true)
+        let mealIDQuery = URLQueryItem(name: categorySearchComponent, value: meal)
+        var components  = URLComponents(url: filterURL, resolvingAgainstBaseURL: true)
         components?.queryItems = [mealIDQuery]
         
         guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
@@ -117,6 +115,96 @@ class NetworkManager {
         }
         
         task.resume()
+    }
+    
+    
+    func getAllIngredients(name: String, completion: @escaping (Result<[Ingredient], FRError>) -> Void) {
+        guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
+        
+        let versionURL  = baseURL.appendingPathComponent(versionComponent)
+        let keyURL      = versionURL.appendingPathComponent(apiKey)
+        let lookupURL   = keyURL.appendingPathComponent(lookupComponent)
+        
+        let mealIDQuery = URLQueryItem(name: mealIDComponent, value: name)
+        var components  = URLComponents(url: lookupURL, resolvingAgainstBaseURL: true)
+        components?.queryItems = [mealIDQuery]
+        
+        guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
+        print(finalURL)
+        
+        let task = URLSession.shared.dataTask(with: finalURL) { data, response, error in
+            
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.unableToDecode))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let topLevelObject = try decoder.decode(IngredientSearchResult.self, from: data)
+                
+                var ingredientArray: [Ingredient] = []
+                for ingredient in topLevelObject.ingredients {
+                    ingredientArray.append(ingredient)
+                }
+                completion(.success(ingredientArray))
+                print(ingredientArray)
+            } catch {
+                print("Error: \(error)")
+                return completion(.failure(.thrownError(error)))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func testIngredients(for id: String, completion: @escaping (Result<Mealy, FRError>) -> Void) {
+        guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
+        
+        let versionURL  = baseURL.appendingPathComponent(versionComponent)
+        let keyURL      = versionURL.appendingPathComponent(apiKey)
+        let lookUpURL   = keyURL.appendingPathComponent(lookupComponent)
+        
+        let mealIDQuery = URLQueryItem(name: mealIDComponent, value: id)
+        var components  = URLComponents(url: lookUpURL, resolvingAgainstBaseURL: true)
+        components?.queryItems = [mealIDQuery]
+        
+        guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
+        print(finalURL)
+             
+             URLSession.shared.dataTask(with: finalURL) { data, _, error in
+                 if let error = error {
+                     print(error, error.localizedDescription)
+                     return completion(.failure(.noData))
+                 }
+                 
+                 guard let data = data else { return completion(.failure(.noData)) }
+                 
+                 do {
+                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: [Any]] {
+                         print(json)
+                         guard let jsonMeal = json["meals"]?[0] as? [String : Any],
+                               let meal = Mealy.decode(from: jsonMeal) else {
+                                   return completion(.failure(.noData))}
+                         print("HEY THE MEALS ARE HERE BUDDY: **\(meal)**")
+                         return completion(.success(meal))
+                     } else {
+                         return completion(.failure(.noData))
+                     }
+                 } catch {
+                     print(error, error.localizedDescription)
+                     return completion(.failure(.thrownError(error)))
+                 }
+             }.resume()
     }
     
     
