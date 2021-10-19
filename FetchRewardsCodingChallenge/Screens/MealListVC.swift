@@ -60,7 +60,6 @@ class MealListVC: UIViewController {
             }
         }
     }
-
 } // END OF CLASS
 
 
@@ -79,7 +78,4 @@ extension MealListVC: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
-    
-    
 } // END OF EXTENSION

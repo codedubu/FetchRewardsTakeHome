@@ -25,7 +25,6 @@ class MealCell: UITableViewCell {
     }
     
     
-    
     func set(meal: Meal) {
         mealLabel.text = meal.name
         mealImageView.downloadImage(fromURL: meal.thumbnail)

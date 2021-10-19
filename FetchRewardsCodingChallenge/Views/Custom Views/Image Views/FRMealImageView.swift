@@ -10,7 +10,6 @@ import UIKit
 class FRMealImageView: UIImageView {
     
     let cache = NetworkManager.shared.cache
-    //placeholder
     
     
     override init(frame: CGRect) {

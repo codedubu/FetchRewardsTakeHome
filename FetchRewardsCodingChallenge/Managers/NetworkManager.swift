@@ -149,7 +149,4 @@ class NetworkManager {
         
         task.resume()
     }
-    
-    
-    
 } // END OF CLASS

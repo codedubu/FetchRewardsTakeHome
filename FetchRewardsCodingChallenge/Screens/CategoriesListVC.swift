@@ -22,11 +22,7 @@ class CategoriesListVC: UIViewController {
         configureTableView()
         getAllCategories()
     }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+
     
     
     private func configureViewController() {
