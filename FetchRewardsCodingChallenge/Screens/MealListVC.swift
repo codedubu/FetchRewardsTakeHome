@@ -7,15 +7,15 @@
 
 import UIKit
 
-class MealListVC: UIViewController {
+class MealListVC: FRActivityIndicatorVC {
     
-    private let tableView           = UITableView()
     var category: Category!
     var meal: Meal?
     var meals: [Meal]               = []
     var filteredMeals: [Meal]       = []
     private var isSearching         = false
-
+    private let tableView           = UITableView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class MealListVC: UIViewController {
         getAllMeals()
     }
     
-    
+
     private func configureViewController() {
         title = category.name
         view.backgroundColor = .systemBackground
@@ -47,16 +47,19 @@ class MealListVC: UIViewController {
     
     func getAllMeals() {
         guard let mealID = category?.name else { return }
+        showActivityIndicator()
         
         NetworkManager.shared.getAllMeals(mealID: mealID) { [weak self] result in
             guard let self = self else { return }
+            self.dismissActivityIndicator()
             
             switch result {
             case .success(let meal):
                 self.meals = meal.sorted { $0.name < $1.name}
                 self.tableView.reloadDataOnMainThread()
+                
             case .failure(let error):
-                print("\(error)")
+                self.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
             }
         }
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79043C0C271F27B400A03D99 /* FRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79043C0B271F27B400A03D99 /* FRButton.swift */; };
+		79043C10271F298300A03D99 /* FRAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79043C0F271F298300A03D99 /* FRAlertContainerView.swift */; };
 		790B1993271E2AED00A42BD0 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B1992271E2AED00A42BD0 /* CategoryCell.swift */; };
 		790B1996271E2CF500A42BD0 /* FRMealImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B1995271E2CF500A42BD0 /* FRMealImageView.swift */; };
 		790B1998271E300200A42BD0 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B1997271E300200A42BD0 /* UITableView+Ext.swift */; };
@@ -17,6 +19,10 @@
 		790B19A3271E526600A42BD0 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A2271E526600A42BD0 /* MealCell.swift */; };
 		790B19A5271E672800A42BD0 /* MealSerializationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A4271E672800A42BD0 /* MealSerializationTest.swift */; };
 		790B19A8271E941400A42BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79DFC94F271DF79600EA3F0C /* Assets.xcassets */; };
+		79D53BE5271F2A0D008C5C4F /* FRAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE4271F2A0D008C5C4F /* FRAlertVC.swift */; };
+		79D53BE7271F2E75008C5C4F /* AlertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE6271F2E75008C5C4F /* AlertTest.swift */; };
+		79D53BE9271F3516008C5C4F /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE8271F3516008C5C4F /* UIViewController + Ext.swift */; };
+		79D53BEC271F3A51008C5C4F /* FRActivityIndicatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BEB271F3A51008C5C4F /* FRActivityIndicatorVC.swift */; };
 		79DFC947271DF79400EA3F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC946271DF79400EA3F0C /* AppDelegate.swift */; };
 		79DFC949271DF79400EA3F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC948271DF79400EA3F0C /* SceneDelegate.swift */; };
 		79DFC953271DF79600EA3F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79DFC951271DF79600EA3F0C /* LaunchScreen.storyboard */; };
@@ -31,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79043C0B271F27B400A03D99 /* FRButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRButton.swift; sourceTree = "<group>"; };
+		79043C0F271F298300A03D99 /* FRAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRAlertContainerView.swift; sourceTree = "<group>"; };
 		790B1992271E2AED00A42BD0 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		790B1995271E2CF500A42BD0 /* FRMealImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRMealImageView.swift; sourceTree = "<group>"; };
 		790B1997271E300200A42BD0 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
@@ -40,6 +48,10 @@
 		790B19A0271E4A3600A42BD0 /* MealListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListVC.swift; sourceTree = "<group>"; };
 		790B19A2271E526600A42BD0 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		790B19A4271E672800A42BD0 /* MealSerializationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSerializationTest.swift; sourceTree = "<group>"; };
+		79D53BE4271F2A0D008C5C4F /* FRAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRAlertVC.swift; sourceTree = "<group>"; };
+		79D53BE6271F2E75008C5C4F /* AlertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTest.swift; sourceTree = "<group>"; };
+		79D53BE8271F3516008C5C4F /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		79D53BEB271F3A51008C5C4F /* FRActivityIndicatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRActivityIndicatorVC.swift; sourceTree = "<group>"; };
 		79DFC943271DF79400EA3F0C /* FetchRewardsCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchRewardsCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79DFC946271DF79400EA3F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79DFC948271DF79400EA3F0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +79,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79043C0D271F27BC00A03D99 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				79043C0B271F27B400A03D99 /* FRButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		79043C0E271F296D00A03D99 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				79D53BE4271F2A0D008C5C4F /* FRAlertVC.swift */,
+				79043C0F271F298300A03D99 /* FRAlertContainerView.swift */,
+				79D53BE6271F2E75008C5C4F /* AlertTest.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		790B1994271E2AF400A42BD0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +112,14 @@
 				790B1995271E2CF500A42BD0 /* FRMealImageView.swift */,
 			);
 			path = "Image Views";
+			sourceTree = "<group>";
+		};
+		79D53BEA271F3A3B008C5C4F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				79D53BEB271F3A51008C5C4F /* FRActivityIndicatorVC.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		79DFC93A271DF79400EA3F0C = {
@@ -138,6 +176,7 @@
 		79DFC95C271DFAAA00EA3F0C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				79D53BEA271F3A3B008C5C4F /* View Controllers */,
 				79DFC95E271DFAC100EA3F0C /* Custom Views */,
 				79DFC95D271DFAB300EA3F0C /* Storyboard */,
 			);
@@ -155,6 +194,8 @@
 		79DFC95E271DFAC100EA3F0C /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				79043C0E271F296D00A03D99 /* Alerts */,
+				79043C0D271F27BC00A03D99 /* Buttons */,
 				790B199B271E3A5300A42BD0 /* Image Views */,
 				790B1994271E2AF400A42BD0 /* Cells */,
 				79DFC96C271E12D600EA3F0C /* Labels */,
@@ -204,6 +245,7 @@
 				79DFC973271E1E9500EA3F0C /* FRError.swift */,
 				790B1997271E300200A42BD0 /* UITableView+Ext.swift */,
 				790B1999271E39BF00A42BD0 /* UIView+Ext.swift */,
+				79D53BE8271F3516008C5C4F /* UIViewController + Ext.swift */,
 			);
 			path = "Helpers and Extensions";
 			sourceTree = "<group>";
@@ -279,9 +321,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				79DFC971271E13FE00EA3F0C /* FRBodyLabel.swift in Sources */,
+				79043C0C271F27B400A03D99 /* FRButton.swift in Sources */,
 				79DFC963271DFC5F00EA3F0C /* CategoriesListVC.swift in Sources */,
 				790B19A5271E672800A42BD0 /* MealSerializationTest.swift in Sources */,
 				79DFC947271DF79400EA3F0C /* AppDelegate.swift in Sources */,
+				79D53BE5271F2A0D008C5C4F /* FRAlertVC.swift in Sources */,
 				79DFC965271DFC8800EA3F0C /* FavoritesListVC.swift in Sources */,
 				790B199A271E39C000A42BD0 /* UIView+Ext.swift in Sources */,
 				79DFC96A271E119E00EA3F0C /* NetworkManager.swift in Sources */,
@@ -289,13 +333,17 @@
 				79DFC967271DFE7000EA3F0C /* Category.swift in Sources */,
 				790B199F271E460200A42BD0 /* Ingredient.swift in Sources */,
 				790B19A1271E4A3600A42BD0 /* MealListVC.swift in Sources */,
+				79D53BE7271F2E75008C5C4F /* AlertTest.swift in Sources */,
 				79DFC949271DF79400EA3F0C /* SceneDelegate.swift in Sources */,
 				79DFC960271DFBB000EA3F0C /* FRTabBarController.swift in Sources */,
+				79D53BE9271F3516008C5C4F /* UIViewController + Ext.swift in Sources */,
 				790B19A3271E526600A42BD0 /* MealCell.swift in Sources */,
+				79D53BEC271F3A51008C5C4F /* FRActivityIndicatorVC.swift in Sources */,
 				790B199D271E45FA00A42BD0 /* Meal.swift in Sources */,
 				79DFC974271E1E9500EA3F0C /* FRError.swift in Sources */,
 				790B1996271E2CF500A42BD0 /* FRMealImageView.swift in Sources */,
 				79DFC96E271E12F900EA3F0C /* FRTitleLabel.swift in Sources */,
+				79043C10271F298300A03D99 /* FRAlertContainerView.swift in Sources */,
 				790B1993271E2AED00A42BD0 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

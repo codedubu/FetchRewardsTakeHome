@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoriesListVC: UIViewController {
+class CategoriesListVC: FRActivityIndicatorVC {
     
     private let tableView                 = UITableView()
     var categories: [Category]            = []
@@ -20,9 +20,15 @@ class CategoriesListVC: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureTableView()
-        getAllCategories()
     }
-
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if isBeingPresented || isMovingToParent {
+            getAllCategories()
+        }
+    }
     
     
     private func configureViewController() {
@@ -46,8 +52,11 @@ class CategoriesListVC: UIViewController {
     
     
     func getAllCategories() {
+        showActivityIndicator()
+        
         NetworkManager.shared.getAllMealCategories(categoryID: category?.id ?? "") { [weak self] result in
             guard let self = self else { return }
+            self.dismissActivityIndicator()
             
             switch result {
             case .success(let category):
@@ -55,7 +64,7 @@ class CategoriesListVC: UIViewController {
                 self.tableView.reloadDataOnMainThread()
                 
             case .failure(let error):
-                print("\(error)")
+                self.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
             }
         }
     }

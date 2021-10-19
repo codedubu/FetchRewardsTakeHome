@@ -11,7 +11,7 @@ class FRTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().tintColor = .systemPurple
+        UITabBar.appearance().tintColor = .systemBlue
         self.viewControllers = [createCategoriesNC(), createFavoritesNC()]
     }
     

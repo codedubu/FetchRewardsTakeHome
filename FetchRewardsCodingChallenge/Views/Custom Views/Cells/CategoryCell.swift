@@ -12,7 +12,7 @@ class CategoryCell: UITableViewCell {
     static let reuseID              = "CategoryCell"
     let categoryImageView           = FRMealImageView(frame: .zero)
     let categoryLabel               = FRTitleLabel(textAlignment: .left, fontSize: 24)
-    let categoryDescriptionLabel    = FRBodyLabel(textAlignment: .left, fontSize: 13)
+    let categoryDescriptionLabel    = FRBodyLabel(textAlignment: .left)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
