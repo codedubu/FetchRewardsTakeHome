@@ -77,6 +77,8 @@ extension MealListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MealCell.reuseID) as! MealCell
         let meal = self.meals[indexPath.row]
+        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.set(meal: meal)
         
         return cell

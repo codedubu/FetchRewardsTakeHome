@@ -26,7 +26,8 @@ class MealCell: UITableViewCell {
     
     
     func set(meal: Meal) {
-        mealLabel.text = meal.name
+        let formattedMeal   = meal.name.replacingOccurrences(of: " and ", with: " & ").localizedCapitalized
+        mealLabel.text      = formattedMeal
         mealImageView.downloadImage(fromURL: meal.thumbnail)
     }
     

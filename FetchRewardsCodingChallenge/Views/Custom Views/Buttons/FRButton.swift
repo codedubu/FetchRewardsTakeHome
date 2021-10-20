@@ -28,6 +28,14 @@ class FRButton: UIButton {
     }
     
     
+    convenience init(backgroundColor: UIColor, title: String, cornerRadius: CGFloat) {
+        self.init(frame: .zero)
+        self.backgroundColor = backgroundColor
+        self.setTitle(title, for: .normal)
+        layer.cornerRadius = cornerRadius
+    }
+    
+    
     private func configure() {
         layer.cornerRadius = 10
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)

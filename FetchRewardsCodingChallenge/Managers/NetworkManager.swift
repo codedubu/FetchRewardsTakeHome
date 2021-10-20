@@ -32,7 +32,7 @@ class NetworkManager {
         let components  = URLComponents(url: categoryURL, resolvingAgainstBaseURL: true)
         
         guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
-        print(finalURL)
+        print("Categories URL Endpoint: \(finalURL)")
         
         let task = URLSession.shared.dataTask(with: finalURL) { data, response, error in
             
@@ -81,7 +81,7 @@ class NetworkManager {
         components?.queryItems = [mealIDQuery]
         
         guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
-        print(finalURL)
+        print("Meals URL Endpoint: \(finalURL)")
         
         let task = URLSession.shared.dataTask(with: finalURL) { data, response, error in
             
@@ -113,7 +113,6 @@ class NetworkManager {
                 return completion(.failure(.thrownError(error)))
             }
         }
-        
         task.resume()
     }
     
@@ -130,32 +129,32 @@ class NetworkManager {
         components?.queryItems = [mealIDQuery]
         
         guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
-        print(finalURL)
-             
-             URLSession.shared.dataTask(with: finalURL) { data, _, error in
-                 if let error = error {
-                     print(error, error.localizedDescription)
-                     return completion(.failure(.noData))
-                 }
-                 
-                 guard let data = data else { return completion(.failure(.noData)) }
-                 
-                 do {
-                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: [Any]] {
-                         print(json)
-                         guard let jsonMeal = json["meals"]?[0] as? [String : Any],
-                               let meal = MealDetail.decode(from: jsonMeal) else {
-                                   return completion(.failure(.noData))}
-                         print("HEY THE MEALS ARE HERE BUDDY: **\(meal)**")
-                         return completion(.success(meal))
-                     } else {
-                         return completion(.failure(.noData))
-                     }
-                 } catch {
-                     print(error, error.localizedDescription)
-                     return completion(.failure(.thrownError(error)))
-                 }
-             }.resume()
+        print("MealDetail URL Endpoint: \(finalURL)")
+        
+        let task = URLSession.shared.dataTask(with: finalURL) { data, _, error in
+            if let error = error {
+                print(error, error.localizedDescription)
+                return completion(.failure(.noData))
+            }
+            
+            guard let data = data else { return completion(.failure(.noData)) }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: [Any]] {
+                    guard let jsonMeal = json["meals"]?[0] as? [String : Any],
+                          let meal = MealDetail.decode(from: jsonMeal) else {
+                              return completion(.failure(.noData))
+                          }
+                    return completion(.success(meal))
+                } else {
+                    return completion(.failure(.noData))
+                }
+            } catch {
+                print(error, error.localizedDescription)
+                return completion(.failure(.thrownError(error)))
+            }
+        }
+        task.resume()
     }
     
     
@@ -185,7 +184,6 @@ class NetworkManager {
             self.cache.setObject(image, forKey: cacheKey)
             completion(image)
         }
-        
         task.resume()
     }
 } // END OF CLASS

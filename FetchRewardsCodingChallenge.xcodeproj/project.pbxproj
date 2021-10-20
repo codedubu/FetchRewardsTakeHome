@@ -21,6 +21,7 @@
 		798D127E271F545900AFB649 /* MealDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D127D271F545900AFB649 /* MealDetailVC.swift */; };
 		798D1280271F55ED00AFB649 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D127F271F55ED00AFB649 /* IngredientCell.swift */; };
 		79BF41B9271F980E00C3FEFB /* FRBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF41B8271F980E00C3FEFB /* FRBodyLabel.swift */; };
+		79BF41BD271FE6C000C3FEFB /* MealInstructionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF41BC271FE6C000C3FEFB /* MealInstructionsVC.swift */; };
 		79D53BE5271F2A0D008C5C4F /* FRAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE4271F2A0D008C5C4F /* FRAlertVC.swift */; };
 		79D53BE7271F2E75008C5C4F /* AlertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE6271F2E75008C5C4F /* AlertTest.swift */; };
 		79D53BE9271F3516008C5C4F /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE8271F3516008C5C4F /* UIViewController + Ext.swift */; };
@@ -28,7 +29,6 @@
 		79DFC947271DF79400EA3F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC946271DF79400EA3F0C /* AppDelegate.swift */; };
 		79DFC949271DF79400EA3F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC948271DF79400EA3F0C /* SceneDelegate.swift */; };
 		79DFC953271DF79600EA3F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79DFC951271DF79600EA3F0C /* LaunchScreen.storyboard */; };
-		79DFC960271DFBB000EA3F0C /* FRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC95F271DFBB000EA3F0C /* FRTabBarController.swift */; };
 		79DFC963271DFC5F00EA3F0C /* CategoriesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC962271DFC5F00EA3F0C /* CategoriesListVC.swift */; };
 		79DFC965271DFC8800EA3F0C /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC964271DFC8800EA3F0C /* FavoritesListVC.swift */; };
 		79DFC967271DFE7000EA3F0C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC966271DFE7000EA3F0C /* Category.swift */; };
@@ -51,6 +51,7 @@
 		798D127D271F545900AFB649 /* MealDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailVC.swift; sourceTree = "<group>"; };
 		798D127F271F55ED00AFB649 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		79BF41B8271F980E00C3FEFB /* FRBodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRBodyLabel.swift; sourceTree = "<group>"; };
+		79BF41BC271FE6C000C3FEFB /* MealInstructionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealInstructionsVC.swift; sourceTree = "<group>"; };
 		79D53BE4271F2A0D008C5C4F /* FRAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRAlertVC.swift; sourceTree = "<group>"; };
 		79D53BE6271F2E75008C5C4F /* AlertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTest.swift; sourceTree = "<group>"; };
 		79D53BE8271F3516008C5C4F /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		79DFC94F271DF79600EA3F0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79DFC952271DF79600EA3F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79DFC954271DF79600EA3F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		79DFC95F271DFBB000EA3F0C /* FRTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRTabBarController.swift; sourceTree = "<group>"; };
 		79DFC962271DFC5F00EA3F0C /* CategoriesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListVC.swift; sourceTree = "<group>"; };
 		79DFC964271DFC8800EA3F0C /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		79DFC966271DFE7000EA3F0C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -201,7 +201,6 @@
 				790B199B271E3A5300A42BD0 /* Image Views */,
 				790B1994271E2AF400A42BD0 /* Cells */,
 				79DFC96C271E12D600EA3F0C /* Labels */,
-				79DFC96F271E13B300EA3F0C /* TabBar Controllers */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -213,6 +212,7 @@
 				790B19A0271E4A3600A42BD0 /* MealListVC.swift */,
 				798D127D271F545900AFB649 /* MealDetailVC.swift */,
 				79DFC964271DFC8800EA3F0C /* FavoritesListVC.swift */,
+				79BF41BC271FE6C000C3FEFB /* MealInstructionsVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -232,14 +232,6 @@
 				79BF41B8271F980E00C3FEFB /* FRBodyLabel.swift */,
 			);
 			path = Labels;
-			sourceTree = "<group>";
-		};
-		79DFC96F271E13B300EA3F0C /* TabBar Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				79DFC95F271DFBB000EA3F0C /* FRTabBarController.swift */,
-			);
-			path = "TabBar Controllers";
 			sourceTree = "<group>";
 		};
 		79DFC972271E1E7200EA3F0C /* Helpers and Extensions */ = {
@@ -325,6 +317,7 @@
 			files = (
 				79BF41B9271F980E00C3FEFB /* FRBodyLabel.swift in Sources */,
 				798D127E271F545900AFB649 /* MealDetailVC.swift in Sources */,
+				79BF41BD271FE6C000C3FEFB /* MealInstructionsVC.swift in Sources */,
 				798D1280271F55ED00AFB649 /* IngredientCell.swift in Sources */,
 				79043C0C271F27B400A03D99 /* FRButton.swift in Sources */,
 				79DFC963271DFC5F00EA3F0C /* CategoriesListVC.swift in Sources */,
@@ -339,7 +332,6 @@
 				790B19A1271E4A3600A42BD0 /* MealListVC.swift in Sources */,
 				79D53BE7271F2E75008C5C4F /* AlertTest.swift in Sources */,
 				79DFC949271DF79400EA3F0C /* SceneDelegate.swift in Sources */,
-				79DFC960271DFBB000EA3F0C /* FRTabBarController.swift in Sources */,
 				79D53BE9271F3516008C5C4F /* UIViewController + Ext.swift in Sources */,
 				790B19A3271E526600A42BD0 /* MealCell.swift in Sources */,
 				79D53BEC271F3A51008C5C4F /* FRActivityIndicatorVC.swift in Sources */,

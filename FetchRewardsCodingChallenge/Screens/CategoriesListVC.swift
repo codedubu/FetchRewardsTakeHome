@@ -82,6 +82,8 @@ extension CategoriesListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseID) as! CategoryCell
         let category = self.categories[indexPath.row]
+        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.set(category: category)
         
         return cell

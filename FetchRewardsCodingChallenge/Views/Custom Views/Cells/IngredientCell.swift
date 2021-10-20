@@ -12,6 +12,7 @@ class IngredientCell: UITableViewCell {
     static let reuseID          = "IngredientCell"
     let ingredientLabel         = FRTitleLabel(textAlignment: .left, fontSize: 18)
     let measurementLabel        = FRBodyLabel(textAlignment: .left)
+
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,9 +26,10 @@ class IngredientCell: UITableViewCell {
     
     
     func set(mealDetail: Ingredient) {
-        ingredientLabel.text    = mealDetail.ingredient
+        ingredientLabel.text    = mealDetail.ingredient.localizedCapitalized
         measurementLabel.text   = mealDetail.measurement
     }
+    
     
     
     private func configure() {
@@ -45,7 +47,6 @@ class IngredientCell: UITableViewCell {
             measurementLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             measurementLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             measurementLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding)
-            
         ])
     }
-}
+} // END OF CLASS

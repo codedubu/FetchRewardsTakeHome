@@ -22,7 +22,7 @@ class MealDetailVC: FRActivityIndicatorVC {
         configureViewController()
         configureUIElements()
         configureTableView()
-        configureTableView()
+        configureInstructionsButton()
         getAllMealDetails()
     }
     
@@ -44,7 +44,6 @@ class MealDetailVC: FRActivityIndicatorVC {
     
     
     private func configureUIElements() {
-        mealImageView.image = UIImage(systemName: "pencil.circle")
         mealImageView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -89,17 +88,21 @@ class MealDetailVC: FRActivityIndicatorVC {
     }
     
     
-//    private func configureInstructionsButton() {
-//        let instructionsButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(nextVC))
-//        navigationItem.rightBarButtonItem = instructionsButton
-//    }
-//    
-//    
-//    @objc func nextVC() {
-//        let destVC = MealInstructionsVC()
-//        let navController = UINavigationController(rootViewController: destVC)
-//        present(navController, animated: true)
-//    }
+    private func configureInstructionsButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Instructions",
+                                                                 style: .plain,
+                                                                 target: self,
+                                                                 action: #selector(nextVC))
+    }
+    
+    
+    @objc func nextVC() {
+        let destVC = MealInstructionsVC()
+        destVC.meal = meal
+        
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
+    }
 
     
 } // END OF CLASS
@@ -118,6 +121,8 @@ extension MealDetailVC: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: IngredientCell.reuseID) as! IngredientCell
         let ingredient = ingredients[indexPath.row]
+        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.set(mealDetail: ingredient)
         
         return cell
