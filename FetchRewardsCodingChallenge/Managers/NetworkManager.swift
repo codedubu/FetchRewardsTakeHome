@@ -118,7 +118,7 @@ class NetworkManager {
     }
     
     
-    func testIngredients(for id: String, completion: @escaping (Result<MealDetail, FRError>) -> Void) {
+    func getAllMealDetails(for id: String, completion: @escaping (Result<MealDetail, FRError>) -> Void) {
         guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
         
         let versionURL  = baseURL.appendingPathComponent(versionComponent)

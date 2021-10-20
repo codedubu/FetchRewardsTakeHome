@@ -10,7 +10,8 @@ import UIKit
 class IngredientCell: UITableViewCell {
 
     static let reuseID          = "IngredientCell"
-    let ingredientLabel         = FRTitleLabel(textAlignment: .left, fontSize: 14)
+    let ingredientLabel         = FRTitleLabel(textAlignment: .left, fontSize: 18)
+    let measurementLabel        = FRBodyLabel(textAlignment: .left)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,19 +25,27 @@ class IngredientCell: UITableViewCell {
     
     
     func set(mealDetail: Ingredient) {
-        ingredientLabel.text = mealDetail.ingredient
+        ingredientLabel.text    = mealDetail.ingredient
+        measurementLabel.text   = mealDetail.measurement
     }
     
     
     private func configure() {
-        addSubview(ingredientLabel)
-        let padding: CGFloat = 12
+        addSubviews(ingredientLabel, measurementLabel)
+        let padding: CGFloat = 8
         
         NSLayoutConstraint.activate([
+      
             ingredientLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
             ingredientLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             ingredientLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            ingredientLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            ingredientLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            measurementLabel.topAnchor.constraint(equalTo: ingredientLabel.bottomAnchor, constant: padding),
+            measurementLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
+            measurementLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            measurementLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding)
+            
         ])
     }
 }
