@@ -9,13 +9,8 @@ import UIKit
 
 class MealDetailVC: FRActivityIndicatorVC {
     
-    var mealy: Mealy!
-    var ingredientys: [Ingredienty] = []
-    var ingredientyy: Ingredienty?
-    
+    var mealDetail: MealDetail?
     var meal: Meal!
-    var ingredient: Ingredient?
-    var ingredients: [Ingredient]   = []
     private let tableView           = UITableView()
     
 
@@ -23,7 +18,6 @@ class MealDetailVC: FRActivityIndicatorVC {
         super.viewDidLoad()
         configureViewController()
         configureTableView()
-//        getAllIngredients()
         getAllIngredientsJSONSerialization()
     }
     
@@ -49,40 +43,19 @@ class MealDetailVC: FRActivityIndicatorVC {
     func getAllIngredientsJSONSerialization() {
         guard let mealID = meal?.id else { return }
         NetworkManager.shared.testIngredients(for: mealID) { [weak self] result in
-            guard let self = self else { return }
-            
+            guard let strongSelf = self else { return }
+        
             switch result {
-            case .success(let ingredients):
-                self.mealy = ingredients
-                self.tableView.reloadData()
+            case .success(let mealDetails):
+                strongSelf.mealDetail = mealDetails
+                strongSelf.tableView.reloadData()
                 
             case .failure(let error):
                 print(error.localizedDescription)
-                print(error.failureReason)
-                self.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
+                strongSelf.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
             }
         }
     }
-    
-    
-    func getAllIngredients() {
-        showActivityIndicator()
-        
-        guard let mealID = meal?.id else { return }
-        NetworkManager.shared.getAllIngredients(name: mealID) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let ingredient):
-                self.ingredient = ingredient.first
-                self.tableView.reloadDataOnMainThread()
-                
-            case .failure(let error):
-                self.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
-            }
-        }
-    }
-
 } // END OF CLASS
 
 
@@ -90,17 +63,17 @@ class MealDetailVC: FRActivityIndicatorVC {
 extension MealDetailVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredients.count
+        return mealDetail?.ingredients?.count ?? 0
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let ingredients = mealDetail?.ingredients else { return  UITableViewCell() }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: IngredientCell.reuseID) as! IngredientCell
-        let ingredienty = self.ingredientys[indexPath.row]
-        cell.set(ingredient: ingredienty)
+        let ingredient = ingredients[indexPath.row]
+        cell.set(mealDetail: ingredient)
         
         return cell
     }
-    
 } // END OF EXTENSION

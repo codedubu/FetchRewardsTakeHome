@@ -118,56 +118,7 @@ class NetworkManager {
     }
     
     
-    func getAllIngredients(name: String, completion: @escaping (Result<[Ingredient], FRError>) -> Void) {
-        guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
-        
-        let versionURL  = baseURL.appendingPathComponent(versionComponent)
-        let keyURL      = versionURL.appendingPathComponent(apiKey)
-        let lookupURL   = keyURL.appendingPathComponent(lookupComponent)
-        
-        let mealIDQuery = URLQueryItem(name: mealIDComponent, value: name)
-        var components  = URLComponents(url: lookupURL, resolvingAgainstBaseURL: true)
-        components?.queryItems = [mealIDQuery]
-        
-        guard let finalURL = components?.url else { return completion(.failure(.invalidURL)) }
-        print(finalURL)
-        
-        let task = URLSession.shared.dataTask(with: finalURL) { data, response, error in
-            
-            if let error = error {
-                return completion(.failure(.thrownError(error)))
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(.unableToDecode))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let topLevelObject = try decoder.decode(IngredientSearchResult.self, from: data)
-                
-                var ingredientArray: [Ingredient] = []
-                for ingredient in topLevelObject.ingredients {
-                    ingredientArray.append(ingredient)
-                }
-                completion(.success(ingredientArray))
-                print(ingredientArray)
-            } catch {
-                print("Error: \(error)")
-                return completion(.failure(.thrownError(error)))
-            }
-        }
-        
-        task.resume()
-    }
-    
-    func testIngredients(for id: String, completion: @escaping (Result<Mealy, FRError>) -> Void) {
+    func testIngredients(for id: String, completion: @escaping (Result<MealDetail, FRError>) -> Void) {
         guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
         
         let versionURL  = baseURL.appendingPathComponent(versionComponent)
@@ -193,7 +144,7 @@ class NetworkManager {
                      if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: [Any]] {
                          print(json)
                          guard let jsonMeal = json["meals"]?[0] as? [String : Any],
-                               let meal = Mealy.decode(from: jsonMeal) else {
+                               let meal = MealDetail.decode(from: jsonMeal) else {
                                    return completion(.failure(.noData))}
                          print("HEY THE MEALS ARE HERE BUDDY: **\(meal)**")
                          return completion(.success(meal))

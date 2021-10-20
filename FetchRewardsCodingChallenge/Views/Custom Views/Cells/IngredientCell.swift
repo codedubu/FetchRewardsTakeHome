@@ -23,8 +23,8 @@ class IngredientCell: UITableViewCell {
     }
     
     
-    func set(ingredient: Ingredienty) {
-        ingredientLabel.text = ingredient.measurement
+    func set(mealDetail: Ingredient) {
+        ingredientLabel.text = mealDetail.ingredient
     }
     
     

@@ -14,13 +14,13 @@
 		790B1998271E300200A42BD0 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B1997271E300200A42BD0 /* UITableView+Ext.swift */; };
 		790B199A271E39C000A42BD0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B1999271E39BF00A42BD0 /* UIView+Ext.swift */; };
 		790B199D271E45FA00A42BD0 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B199C271E45FA00A42BD0 /* Meal.swift */; };
-		790B199F271E460200A42BD0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B199E271E460200A42BD0 /* Ingredient.swift */; };
 		790B19A1271E4A3600A42BD0 /* MealListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A0271E4A3600A42BD0 /* MealListVC.swift */; };
 		790B19A3271E526600A42BD0 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A2271E526600A42BD0 /* MealCell.swift */; };
-		790B19A5271E672800A42BD0 /* MealSerializationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A4271E672800A42BD0 /* MealSerializationTest.swift */; };
+		790B19A5271E672800A42BD0 /* MealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B19A4271E672800A42BD0 /* MealDetail.swift */; };
 		790B19A8271E941400A42BD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79DFC94F271DF79600EA3F0C /* Assets.xcassets */; };
 		798D127E271F545900AFB649 /* MealDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D127D271F545900AFB649 /* MealDetailVC.swift */; };
 		798D1280271F55ED00AFB649 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D127F271F55ED00AFB649 /* IngredientCell.swift */; };
+		79BF41B9271F980E00C3FEFB /* FRBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BF41B8271F980E00C3FEFB /* FRBodyLabel.swift */; };
 		79D53BE5271F2A0D008C5C4F /* FRAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE4271F2A0D008C5C4F /* FRAlertVC.swift */; };
 		79D53BE7271F2E75008C5C4F /* AlertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE6271F2E75008C5C4F /* AlertTest.swift */; };
 		79D53BE9271F3516008C5C4F /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D53BE8271F3516008C5C4F /* UIViewController + Ext.swift */; };
@@ -34,7 +34,6 @@
 		79DFC967271DFE7000EA3F0C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC966271DFE7000EA3F0C /* Category.swift */; };
 		79DFC96A271E119E00EA3F0C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC969271E119E00EA3F0C /* NetworkManager.swift */; };
 		79DFC96E271E12F900EA3F0C /* FRTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC96D271E12F900EA3F0C /* FRTitleLabel.swift */; };
-		79DFC971271E13FE00EA3F0C /* FRBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC970271E13FE00EA3F0C /* FRBodyLabel.swift */; };
 		79DFC974271E1E9500EA3F0C /* FRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFC973271E1E9500EA3F0C /* FRError.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,12 +45,12 @@
 		790B1997271E300200A42BD0 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		790B1999271E39BF00A42BD0 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		790B199C271E45FA00A42BD0 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		790B199E271E460200A42BD0 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		790B19A0271E4A3600A42BD0 /* MealListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListVC.swift; sourceTree = "<group>"; };
 		790B19A2271E526600A42BD0 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
-		790B19A4271E672800A42BD0 /* MealSerializationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSerializationTest.swift; sourceTree = "<group>"; };
+		790B19A4271E672800A42BD0 /* MealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetail.swift; sourceTree = "<group>"; };
 		798D127D271F545900AFB649 /* MealDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailVC.swift; sourceTree = "<group>"; };
 		798D127F271F55ED00AFB649 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
+		79BF41B8271F980E00C3FEFB /* FRBodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRBodyLabel.swift; sourceTree = "<group>"; };
 		79D53BE4271F2A0D008C5C4F /* FRAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRAlertVC.swift; sourceTree = "<group>"; };
 		79D53BE6271F2E75008C5C4F /* AlertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTest.swift; sourceTree = "<group>"; };
 		79D53BE8271F3516008C5C4F /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
@@ -68,7 +67,6 @@
 		79DFC966271DFE7000EA3F0C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		79DFC969271E119E00EA3F0C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		79DFC96D271E12F900EA3F0C /* FRTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRTitleLabel.swift; sourceTree = "<group>"; };
-		79DFC970271E13FE00EA3F0C /* FRBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FRBodyLabel.swift; path = ../../../../../../Design/FRBodyLabel.swift; sourceTree = "<group>"; };
 		79DFC973271E1E9500EA3F0C /* FRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,8 +170,7 @@
 			children = (
 				79DFC966271DFE7000EA3F0C /* Category.swift */,
 				790B199C271E45FA00A42BD0 /* Meal.swift */,
-				790B199E271E460200A42BD0 /* Ingredient.swift */,
-				790B19A4271E672800A42BD0 /* MealSerializationTest.swift */,
+				790B19A4271E672800A42BD0 /* MealDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				79DFC96D271E12F900EA3F0C /* FRTitleLabel.swift */,
-				79DFC970271E13FE00EA3F0C /* FRBodyLabel.swift */,
+				79BF41B8271F980E00C3FEFB /* FRBodyLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -326,12 +323,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79BF41B9271F980E00C3FEFB /* FRBodyLabel.swift in Sources */,
 				798D127E271F545900AFB649 /* MealDetailVC.swift in Sources */,
-				79DFC971271E13FE00EA3F0C /* FRBodyLabel.swift in Sources */,
 				798D1280271F55ED00AFB649 /* IngredientCell.swift in Sources */,
 				79043C0C271F27B400A03D99 /* FRButton.swift in Sources */,
 				79DFC963271DFC5F00EA3F0C /* CategoriesListVC.swift in Sources */,
-				790B19A5271E672800A42BD0 /* MealSerializationTest.swift in Sources */,
+				790B19A5271E672800A42BD0 /* MealDetail.swift in Sources */,
 				79DFC947271DF79400EA3F0C /* AppDelegate.swift in Sources */,
 				79D53BE5271F2A0D008C5C4F /* FRAlertVC.swift in Sources */,
 				79DFC965271DFC8800EA3F0C /* FavoritesListVC.swift in Sources */,
@@ -339,7 +336,6 @@
 				79DFC96A271E119E00EA3F0C /* NetworkManager.swift in Sources */,
 				790B1998271E300200A42BD0 /* UITableView+Ext.swift in Sources */,
 				79DFC967271DFE7000EA3F0C /* Category.swift in Sources */,
-				790B199F271E460200A42BD0 /* Ingredient.swift in Sources */,
 				790B19A1271E4A3600A42BD0 /* MealListVC.swift in Sources */,
 				79D53BE7271F2E75008C5C4F /* AlertTest.swift in Sources */,
 				79DFC949271DF79400EA3F0C /* SceneDelegate.swift in Sources */,
