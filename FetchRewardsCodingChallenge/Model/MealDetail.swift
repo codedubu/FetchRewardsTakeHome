@@ -16,17 +16,18 @@ struct MealDetail {
     let ingredients: [Ingredient]?
     
     static func decode(from data: [String : Any]) -> MealDetail? {
-        guard   let name          = data["strMeal"] as? String,
-                let instructions  = data["strInstructions"] as? String,
-                let youTubeLink   = data["strYoutube"] as? String,
-                let sourceLink    = data["strSource"] as? String
+        guard   let name          = data[Networking.meal] as? String,
+                let instructions  = data[Networking.mealinstructions] as? String,
+                let youTubeLink   = data[Networking.youtube] as? String,
+                let sourceLink    = data[Networking.source] as? String
         else { return nil }
         
         var ingredients: [Ingredient] = []
+        
         for i in 1...20 {
-            if let ingredient = data["strIngredient\(i)"] as? String,
-               let measurement = data ["strMeasure\(i)"] as? String {
-                if ingredient != "<null>" && !ingredient.isEmpty {
+            if let ingredient = data["\(Networking.ingredients)\(i)"] as? String,
+               let measurement = data ["\(Networking.measurement)\(i)"] as? String {
+                if ingredient != "\(Networking.nullValue)" && !ingredient.isEmpty {
                     ingredients.append(Ingredient(ingredient: ingredient, measurement: measurement))
                 } else {
                     break

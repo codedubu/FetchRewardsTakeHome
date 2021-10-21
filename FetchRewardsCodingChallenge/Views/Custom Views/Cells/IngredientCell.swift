@@ -9,7 +9,7 @@ import UIKit
 
 class IngredientCell: UITableViewCell {
 
-    static let reuseID          = "IngredientCell"
+    static let reuseID          = Cells.ingredient
     let ingredientLabel         = FRTitleLabel(textAlignment: .left, fontSize: 18)
     let measurementLabel        = FRBodyLabel(textAlignment: .left)
 
@@ -29,7 +29,6 @@ class IngredientCell: UITableViewCell {
         ingredientLabel.text    = mealDetail.ingredient.localizedCapitalized
         measurementLabel.text   = mealDetail.measurement
     }
-    
     
     
     private func configure() {

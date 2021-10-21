@@ -26,11 +26,13 @@ class MealDetailVC: FRActivityIndicatorVC {
         getAllMealDetails()
     }
     
+    
     private func configureViewController() {
         title = meal.name
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
     
     private func configureTableView() {
         tableView.frame = view.bounds
@@ -61,27 +63,28 @@ class MealDetailVC: FRActivityIndicatorVC {
     }
     
     
-    
-    func getAllMealDetails() {
+    private func getAllMealDetails() {
         guard let mealID = meal?.id else { return }
+        showActivityIndicator()
+        
         NetworkManager.shared.getAllMealDetails(for: mealID) { [weak self] result in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
+            self.dismissActivityIndicator()
         
             switch result {
             case .success(let mealDetails):
-                strongSelf.mealDetail = mealDetails
-                strongSelf.tableView.reloadDataOnMainThread()
-                strongSelf.downloadMealDetailImageOnMainThread()
+                self.mealDetail = mealDetails
+                self.tableView.reloadDataOnMainThread()
+                self.downloadMealDetailImageOnMainThread()
                 
             case .failure(let error):
-                print(error.localizedDescription)
-                strongSelf.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
+                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
             }
         }
     }
     
     
-    func downloadMealDetailImageOnMainThread() {
+    private func downloadMealDetailImageOnMainThread() {
         DispatchQueue.main.async {
             self.mealImageView.downloadImage(fromURL: self.meal.thumbnail)
         }
@@ -89,7 +92,7 @@ class MealDetailVC: FRActivityIndicatorVC {
     
     
     private func configureInstructionsButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Instructions",
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Title.instructions,
                                                                  style: .plain,
                                                                  target: self,
                                                                  action: #selector(nextVC))
@@ -103,8 +106,6 @@ class MealDetailVC: FRActivityIndicatorVC {
         let navController = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
-
-    
 } // END OF CLASS
 
 
@@ -118,8 +119,8 @@ extension MealDetailVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let ingredients = mealDetail?.ingredients else { return  UITableViewCell() }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: IngredientCell.reuseID) as! IngredientCell
+        
         let ingredient = ingredients[indexPath.row]
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none

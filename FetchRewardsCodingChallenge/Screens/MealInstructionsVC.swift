@@ -7,14 +7,14 @@
 
 import UIKit
 
-class MealInstructionsVC: UIViewController {
+class MealInstructionsVC: FRActivityIndicatorVC {
     
     var meal: Meal!
     var mealDetailInstruction: MealDetail?
 
     let instructionLabel    = FRBodyLabel(textAlignment: .left)
-    let youTubeButton       = FRButton(backgroundColor: .systemRed, title: "YouTube Link", cornerRadius: 14)
-    let sourceButton        = FRButton(backgroundColor: .systemGreen, title: "Source Link", cornerRadius: 14)
+    let youTubeButton       = FRButton(backgroundColor: .systemRed, title: Title.ytlink, cornerRadius: 14)
+    let sourceButton        = FRButton(backgroundColor: .systemGreen, title: Title.sourcelink, cornerRadius: 14)
   
     
     override func viewDidLoad() {
@@ -22,27 +22,22 @@ class MealInstructionsVC: UIViewController {
         view.addSubviews(instructionLabel,youTubeButton,sourceButton)
         configureViewController()
         configureUIElements()
+        configureButtons()
         getAllInstructions()
-
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
-    
-    
-    func configureViewController() {
-        title                   = "Instructions"
+    private func configureViewController() {
+        title                   = Title.instructions
         view.backgroundColor    = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
 
     private func configureUIElements() {
-        instructionLabel.translatesAutoresizingMaskIntoConstraints     = false
-        youTubeButton.translatesAutoresizingMaskIntoConstraints = false
-        sourceButton.translatesAutoresizingMaskIntoConstraints  = false
+        instructionLabel.translatesAutoresizingMaskIntoConstraints  = false
+        youTubeButton.translatesAutoresizingMaskIntoConstraints     = false
+        sourceButton.translatesAutoresizingMaskIntoConstraints      = false
         
         let padding: CGFloat = 140
         let heightPadding: CGFloat = 44
@@ -53,11 +48,6 @@ class MealInstructionsVC: UIViewController {
             instructionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             instructionLabel.bottomAnchor.constraint(equalTo: youTubeButton.topAnchor, constant: -14),
             
-            youTubeButton.topAnchor.constraint(equalTo: instructionLabel.bottomAnchor),
-            youTubeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            youTubeButton.heightAnchor.constraint(equalToConstant: heightPadding),
-            youTubeButton.widthAnchor.constraint(equalToConstant: padding),
-            
             sourceButton.topAnchor.constraint(equalTo: youTubeButton.bottomAnchor, constant: 12),
             sourceButton.centerXAnchor.constraint(equalTo: youTubeButton.centerXAnchor),
             sourceButton.heightAnchor.constraint(equalToConstant: heightPadding),
@@ -67,27 +57,57 @@ class MealInstructionsVC: UIViewController {
     }
     
     
-    func getAllInstructions() {
+    private func getAllInstructions() {
         guard let mealID = meal?.id else { return }
+        showActivityIndicator()
+        
         NetworkManager.shared.getAllMealDetails(for: mealID) { [weak self] result in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
+            self.dismissActivityIndicator()
             
             switch result {
             case .success(let mealDetailInstructions):
-                strongSelf.mealDetailInstruction = mealDetailInstructions
-                strongSelf.fillInstructionLabel()
+                self.mealDetailInstruction = mealDetailInstructions
+                self.configureInstructionLabelOnMainThread()
                 
             case .failure(let error):
-                print(error.localizedDescription)
+                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
             }
         }
     }
     
-    func fillInstructionLabel() {
+    
+    private func configureInstructionLabelOnMainThread() {
         DispatchQueue.main.async {
             let formattedMealDetailInstruction = self.mealDetailInstruction?.instructions.replacingOccurrences(of: "\n", with: "\n\n")
             
             self.instructionLabel.text = formattedMealDetailInstruction
         }
+    }
+    
+    
+    private func configureButtons() {
+        youTubeButton.addTarget(self, action: #selector(didTapYoutubeButton), for: .touchUpInside)
+        sourceButton.addTarget(self, action: #selector(didTapSourceButton), for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            youTubeButton.topAnchor.constraint(equalTo: instructionLabel.bottomAnchor),
+            youTubeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            youTubeButton.heightAnchor.constraint(equalToConstant: 44),
+            youTubeButton.widthAnchor.constraint(equalToConstant: 140),
+        ])
+  
+    }
+    
+    
+    @objc func didTapYoutubeButton() {
+        guard let convertedLink = mealDetailInstruction?.youtubeLink else { return }
+            presentSafariVC(with: convertedLink)
+    }
+    
+    
+    @objc func didTapSourceButton() {
+        guard let convertedLink = mealDetailInstruction?.sourceLink else { return }
+        presentSafariVC(with: convertedLink)
     }
 } // END OF CLASS

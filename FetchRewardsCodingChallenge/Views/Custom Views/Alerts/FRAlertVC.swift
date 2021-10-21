@@ -13,7 +13,7 @@ class FRAlertVC: UIViewController {
     let containerView   = FRAlertContainerView()
     let titleLabel      = FRTitleLabel(textAlignment: .center, fontSize: 20)
     let messageLabel    = FRBodyLabel(textAlignment: .center)
-    let actionButton    = FRButton(backgroundColor: .systemBlue, title: "Ok")
+    let actionButton    = FRButton(backgroundColor: .systemBlue, title: Alert.ok)
     
     var alertTitle: String?
     var message: String?
@@ -46,7 +46,7 @@ class FRAlertVC: UIViewController {
     }
     
     
-    func configureContainerView() {
+    private func configureContainerView() {
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -56,8 +56,8 @@ class FRAlertVC: UIViewController {
     }
     
     
-    func configureTitleLabel() {
-        titleLabel.text = alertTitle ?? "Someting went wrong"
+    private func configureTitleLabel() {
+        titleLabel.text = alertTitle ?? Alert.wrong
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
@@ -68,8 +68,8 @@ class FRAlertVC: UIViewController {
     }
     
     
-    func configureActionButton() {
-        actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
+    private func configureActionButton() {
+        actionButton.setTitle(buttonTitle ?? Alert.ok, for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
                 
         NSLayoutConstraint.activate([
@@ -81,8 +81,8 @@ class FRAlertVC: UIViewController {
     }
     
     
-    func configureMessageLabel() {
-        messageLabel.text = message ?? "Unable to complete request"
+    private func configureMessageLabel() {
+        messageLabel.text = message ?? Alert.request
         messageLabel.numberOfLines = 4
         
         NSLayoutConstraint.activate([

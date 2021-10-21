@@ -9,7 +9,7 @@ import UIKit
 
 class MealCell: UITableViewCell {
 
-    static let reuseID          = "MealCell"
+    static let reuseID          = Cells.meal
     let mealImageView           = FRMealImageView(frame: .zero)
     let mealLabel               = FRTitleLabel(textAlignment: .left, fontSize: 22)
     

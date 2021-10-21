@@ -34,12 +34,11 @@ class FRActivityIndicatorVC: UIViewController {
         activityIndicator.startAnimating()
     }
     
+    
     func dismissActivityIndicator() {
         DispatchQueue.main.async {
             self.containerView.removeFromSuperview()
             self.containerView = nil
         }
     }
-    
-    
 } // END OF CLASS

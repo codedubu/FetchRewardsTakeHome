@@ -13,15 +13,17 @@ class MealListVC: FRActivityIndicatorVC {
     var meal: Meal?
     var meals: [Meal]               = []
     var filteredMeals: [Meal]       = []
-    private var isSearching         = false
-    private let tableView           = UITableView()
     
+    private let tableView           = UITableView()
+    private var isSearching         = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureTableView()
         getAllMeals()
+        configureSearchController()
     }
     
 
@@ -29,6 +31,16 @@ class MealListVC: FRActivityIndicatorVC {
         title = category.name
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
+    private func configureSearchController() {
+        let searchController                                    = UISearchController()
+        searchController.searchBar.placeholder                  = Title.mealPlaceholder
+        searchController.searchResultsUpdater                   = self
+        searchController.obscuresBackgroundDuringPresentation   = false
+        navigationItem.hidesSearchBarWhenScrolling              = false
+        navigationItem.searchController                         = searchController
     }
     
     
@@ -45,7 +57,7 @@ class MealListVC: FRActivityIndicatorVC {
     }
     
     
-    func getAllMeals() {
+    private func getAllMeals() {
         guard let mealName = category?.name else { return }
         showActivityIndicator()
         
@@ -56,10 +68,11 @@ class MealListVC: FRActivityIndicatorVC {
             switch result {
             case .success(let meal):
                 self.meals = meal.sorted { $0.name < $1.name}
+                self.filteredMeals = meal.sorted { $0.name < $1.name}
                 self.tableView.reloadDataOnMainThread()
                 
             case .failure(let error):
-                self.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
+                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
             }
         }
     }
@@ -84,6 +97,7 @@ extension MealListVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let meal = meals[indexPath.row]
         
@@ -91,5 +105,26 @@ extension MealListVC: UITableViewDataSource, UITableViewDelegate {
         destinationVC.meal = meal
         
         navigationController?.pushViewController(destinationVC, animated: true)
+    }
+} // END OF EXTENSION
+
+
+extension MealListVC: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+     
+        self.meals = filteredMeals
+        
+        guard let searchTerm = searchController.searchBar.text, !searchTerm.isEmpty else {
+            self.tableView.reloadDataOnMainThread()
+            return
+        }
+        
+        let filteredMeals = meals.filter {
+            $0.name.localizedCaseInsensitiveContains(searchTerm)
+        }
+        
+        self.meals = filteredMeals
+        self.tableView.reloadDataOnMainThread()
     }
 } // END OF EXTENSION

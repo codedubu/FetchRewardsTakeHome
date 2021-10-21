@@ -9,11 +9,9 @@ import UIKit
 
 class CategoriesListVC: FRActivityIndicatorVC {
     
-    private let tableView                 = UITableView()
-    var categories: [Category]            = []
-    var filteredCategories: [Category]    = []
     var category: Category?
-    private var isSearching               = false
+    var categories: [Category]            = []
+    var tableView                         = UITableView()
     
 
     override func viewDidLoad() {
@@ -32,7 +30,7 @@ class CategoriesListVC: FRActivityIndicatorVC {
     
     
     private func configureViewController() {
-        title = "Categories"
+        title = Title.categories
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -51,7 +49,7 @@ class CategoriesListVC: FRActivityIndicatorVC {
     }
     
     
-    func getAllCategories() {
+    private func getAllCategories() {
         showActivityIndicator()
         
         NetworkManager.shared.getAllMealCategories(categoryID: category?.id ?? "") { [weak self] result in
@@ -64,7 +62,7 @@ class CategoriesListVC: FRActivityIndicatorVC {
                 self.tableView.reloadDataOnMainThread()
                 
             case .failure(let error):
-                self.presentFRAlertOnMainThread(title: "Something went wrong", message: error.localizedDescription, buttonTitle: "Ok")
+                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
             }
         }
     }
@@ -81,6 +79,7 @@ extension CategoriesListVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseID) as! CategoryCell
+        
         let category = self.categories[indexPath.row]
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -91,8 +90,8 @@ extension CategoriesListVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let activeArray = isSearching ? filteredCategories : categories
-        let category = activeArray[indexPath.row]
+        let categories = categories
+        let category = categories[indexPath.row]
         
         let destinationVC = MealListVC()
         destinationVC.category = category

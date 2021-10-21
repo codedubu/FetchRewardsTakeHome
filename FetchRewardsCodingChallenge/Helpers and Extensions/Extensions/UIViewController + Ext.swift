@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension UIViewController {
     
@@ -19,4 +20,15 @@ extension UIViewController {
     }
     
     
+    func presentSafariVC(with stringURL: String) {
+        if stringURL.isEmpty {
+            presentFRAlertOnMainThread(title: Alert.uhOh, message: Alert.link, buttonTitle: Alert.ok)
+        } else {
+            guard let convertedToURL = URL(string: stringURL) else { return }
+
+            let safariVC = SFSafariViewController(url: convertedToURL)
+            safariVC.preferredControlTintColor = .systemBlue
+            present(safariVC, animated: true)
+        }
+    }
 } // END OF EXTENSION

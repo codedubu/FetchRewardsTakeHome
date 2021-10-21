@@ -12,14 +12,14 @@ class NetworkManager {
     static let shared                   = NetworkManager()
     let cache                           = NSCache<NSString, UIImage>()
     
-    private let baseURL                 = "https://www.themealdb.com/api/json/"
-    private let versionComponent        = "v1"
-    private let apiKey                  = "1"
-    private let categoryComponent       = "categories.php"
-    private let filterComponent         = "filter.php"
-    private let lookupComponent         = "lookup.php"
-    private let mealIDComponent         = "i"
-    private let categorySearchComponent = "c"
+    private let baseURL                 = Networking.mealDBURL
+    private let versionComponent        = Networking.version
+    private let apiKey                  = Networking.key
+    private let categoryComponent       = Networking.category
+    private let filterComponent         = Networking.filter
+    private let lookupComponent         = Networking.lookup
+    private let mealIDComponent         = Networking.mealID
+    private let categorySearchComponent = Networking.search
     
     
     func getAllMealCategories(categoryID: String, completion: @escaping (Result<[Category], FRError>) -> Void) {
@@ -60,11 +60,10 @@ class NetworkManager {
                 }
                 completion(.success(categoryArray))
             } catch {
-                print("Error: \(error)")
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(.failure(.thrownError(error)))
             }
         }
-        
         task.resume()
     }
     
@@ -109,7 +108,7 @@ class NetworkManager {
                 }
                 completion(.success(mealArray))
             } catch {
-                print("Error: \(error)")
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(.failure(.thrownError(error)))
             }
         }
@@ -133,7 +132,7 @@ class NetworkManager {
         
         let task = URLSession.shared.dataTask(with: finalURL) { data, _, error in
             if let error = error {
-                print(error, error.localizedDescription)
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(.failure(.noData))
             }
             
@@ -150,7 +149,7 @@ class NetworkManager {
                     return completion(.failure(.noData))
                 }
             } catch {
-                print(error, error.localizedDescription)
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(.failure(.thrownError(error)))
             }
         }
