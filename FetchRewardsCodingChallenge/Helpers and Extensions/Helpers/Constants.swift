@@ -55,3 +55,8 @@ enum Cells {
     static let ingredient       = "IngredientCell"
 }// END OF ENUM
 
+
+enum Images {
+    
+    static let placeHolder      = "fork.knife.circle"
+}// END OF ENUM

@@ -10,7 +10,7 @@ import UIKit
 class FRMealImageView: UIImageView {
     
     let cache = NetworkManager.shared.cache
-    
+    let placeholderImage = UIImage(systemName: Images.placeHolder)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +27,7 @@ class FRMealImageView: UIImageView {
         layer.cornerRadius  = 40
         clipsToBounds       = true
         contentMode         = .scaleAspectFit
+        image               = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
     

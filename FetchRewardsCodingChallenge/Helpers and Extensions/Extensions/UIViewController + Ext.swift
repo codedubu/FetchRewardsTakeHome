@@ -31,4 +31,11 @@ extension UIViewController {
             present(safariVC, animated: true)
         }
     }
+    
+    
+    func popVCOnMainThread() {
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
 } // END OF EXTENSION

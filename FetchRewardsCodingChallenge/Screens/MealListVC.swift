@@ -28,7 +28,7 @@ class MealListVC: FRActivityIndicatorVC {
     
 
     private func configureViewController() {
-        title = category.name
+        title = category.name.capitalized
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -73,6 +73,7 @@ class MealListVC: FRActivityIndicatorVC {
                 
             case .failure(let error):
                 self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
+                self.popVCOnMainThread()
             }
         }
     }
