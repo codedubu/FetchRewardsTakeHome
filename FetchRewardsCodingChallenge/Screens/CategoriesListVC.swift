@@ -52,19 +52,29 @@ class CategoriesListVC: FRActivityIndicatorVC {
     private func getAllCategories() {
         showActivityIndicator()
         
-        NetworkManager.shared.getAllMealCategories(categoryID: category?.id ?? "") { [weak self] result in
-            guard let self = self else { return }
-            self.dismissActivityIndicator()
-            
-            switch result {
-            case .success(let category):
-                self.categories = category.sorted { $0.name < $1.name }
-                self.tableView.reloadDataOnMainThread()
+            NetworkManager.shared.getAllMealCategories { [weak self] result in
+                guard let self = self else { return }
+                self.dismissActivityIndicator()
                 
-            case .failure(let error):
-                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
+                switch result {
+                case .success(let category):
+                    self.updateUIOnMainThread(with: category)
+                    
+                case .failure(let error):
+                    self.presentFRErrorAlertOnMainThread(message: error.localizedDescription)
+                }
             }
+    }
+    
+    
+    private func updateUIOnMainThread(with category: [Category]) {
+        DispatchQueue.main.async {
+            self.categories = category.sorted { $0.name < $1.name }
+            self.tableView.reloadData()
         }
+//        DispatchQueue.main.async {
+//        }
+//        self.tableView.reloadDataOnMainThread()
     }
 } // END OF CLASS
 

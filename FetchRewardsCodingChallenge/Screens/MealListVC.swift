@@ -15,8 +15,7 @@ class MealListVC: FRActivityIndicatorVC {
     var filteredMeals: [Meal]       = []
     
     private let tableView           = UITableView()
-    private var isSearching         = false
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,15 +66,22 @@ class MealListVC: FRActivityIndicatorVC {
             
             switch result {
             case .success(let meal):
-                self.meals = meal.sorted { $0.name < $1.name}
-                self.filteredMeals = meal.sorted { $0.name < $1.name}
-                self.tableView.reloadDataOnMainThread()
+                self.updateUIOnMainThread(with: meal)
                 
             case .failure(let error):
-                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
+                self.presentFRErrorAlertOnMainThread(message: error.localizedDescription)
                 self.popVCOnMainThread()
             }
         }
+    }
+    
+    
+    private func updateUIOnMainThread(with meal: [Meal]) {
+        DispatchQueue.main.async {
+            self.meals = meal.sorted { $0.name < $1.name}
+            self.filteredMeals = meal.sorted { $0.name < $1.name}
+        }
+        self.tableView.reloadDataOnMainThread()
     }
 } // END OF CLASS
 
@@ -113,6 +119,7 @@ extension MealListVC: UITableViewDataSource, UITableViewDelegate {
 extension MealListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        // Can we refactor, make cleaner?
      
         self.meals = filteredMeals
         

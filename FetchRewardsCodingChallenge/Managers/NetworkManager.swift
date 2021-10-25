@@ -22,7 +22,7 @@ class NetworkManager {
     private let categorySearchComponent = Networking.search
     
     
-    func getAllMealCategories(categoryID: String, completion: @escaping (Result<[Category], FRError>) -> Void) {
+    func getAllMealCategories(completion: @escaping (Result<[Category], FRError>) -> Void) {
         guard let baseURL = URL(string: baseURL) else { return completion(.failure(.invalidURL)) }
         
         let versionURL  = baseURL.appendingPathComponent(versionComponent)
@@ -54,11 +54,7 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let topLevelObject = try decoder.decode(CategorySearchResults.self, from: data)
                 
-                var categoryArray: [Category] = []
-                for category in topLevelObject.categories {
-                    categoryArray.append(category)
-                }
-                completion(.success(categoryArray))
+                completion(.success(topLevelObject.categories))
             } catch {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(.failure(.thrownError(error)))
@@ -100,13 +96,11 @@ class NetworkManager {
             
             do {
                 let decoder = JSONDecoder()
+                // mealSearchResults
                 let topLevelObject = try decoder.decode(MealSearchResults.self, from: data)
                 
-                var mealArray: [Meal] = []
-                for meal in topLevelObject.meals {
-                    mealArray.append(meal)
-                }
-                completion(.success(mealArray))
+                
+                completion(.success(topLevelObject.meals))
             } catch {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(.failure(.thrownError(error)))
@@ -139,7 +133,9 @@ class NetworkManager {
             guard let data = data else { return completion(.failure(.noData)) }
             
             do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: [Any]] {
+
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: [Any]] {
+        
                     guard let jsonMeal = json["meals"]?[0] as? [String : Any],
                           let meal = MealDetail.decode(from: jsonMeal) else {
                               return completion(.failure(.noData))

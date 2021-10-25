@@ -63,6 +63,14 @@ class MealDetailVC: FRActivityIndicatorVC {
     }
     
     
+    private func configureInstructionsButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Title.instructions,
+                                                                 style: .plain,
+                                                                 target: self,
+                                                                 action: #selector(nextVC))
+    }
+    
+    
     private func getAllMealDetails() {
         guard let mealID = meal?.id else { return }
         showActivityIndicator()
@@ -73,15 +81,22 @@ class MealDetailVC: FRActivityIndicatorVC {
         
             switch result {
             case .success(let mealDetails):
-                self.mealDetail = mealDetails
-                self.tableView.reloadDataOnMainThread()
-                self.downloadMealDetailImageOnMainThread()
+                self.updateUIOnMainThread(with: mealDetails)
                 
             case .failure(let error):
-                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
+                self.presentFRErrorAlertOnMainThread(message: error.localizedDescription)
                 self.popVCOnMainThread()
             }
         }
+    }
+    
+    
+    private func updateUIOnMainThread(with mealDetails: MealDetail) {
+        DispatchQueue.main.async {
+            self.mealDetail = mealDetails
+        }
+        self.tableView.reloadDataOnMainThread()
+        self.downloadMealDetailImageOnMainThread()
     }
     
     
@@ -89,14 +104,6 @@ class MealDetailVC: FRActivityIndicatorVC {
         DispatchQueue.main.async {
             self.mealImageView.downloadImage(fromURL: self.meal.thumbnail)
         }
-    }
-    
-    
-    private func configureInstructionsButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Title.instructions,
-                                                                 style: .plain,
-                                                                 target: self,
-                                                                 action: #selector(nextVC))
     }
     
     

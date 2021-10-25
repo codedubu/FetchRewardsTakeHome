@@ -11,6 +11,9 @@ class MealInstructionsVC: FRActivityIndicatorVC {
     
     var meal: Meal!
     var mealDetailInstruction: MealDetail?
+    
+    let scrollView          = UIScrollView()
+    let contentView         = UIView()
 
     let instructionLabel    = FRBodyLabel(textAlignment: .left)
     let youTubeButton       = FRButton(backgroundColor: .systemRed, title: Title.ytlink, cornerRadius: 14)
@@ -19,13 +22,13 @@ class MealInstructionsVC: FRActivityIndicatorVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubviews(instructionLabel,youTubeButton,sourceButton)
         configureViewController()
+        configureScrollView()
         configureUIElements()
-        configureButtons()
         getAllInstructions()
+        configureButtons()
     }
-    
+
     
     private func configureViewController() {
         title                   = Title.instructions
@@ -33,26 +36,40 @@ class MealInstructionsVC: FRActivityIndicatorVC {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    
+    private func configureScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        scrollView.pinToEdges(of: view)
+        contentView.pinToEdges(of: scrollView)
+    }
+    
 
     private func configureUIElements() {
-        instructionLabel.translatesAutoresizingMaskIntoConstraints  = false
-        youTubeButton.translatesAutoresizingMaskIntoConstraints     = false
-        sourceButton.translatesAutoresizingMaskIntoConstraints      = false
+        contentView.addSubviews(instructionLabel, youTubeButton, sourceButton)
         
         let padding: CGFloat = 140
         let heightPadding: CGFloat = 44
         
         NSLayoutConstraint.activate([
-            instructionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            instructionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            instructionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            instructionLabel.bottomAnchor.constraint(equalTo: youTubeButton.topAnchor, constant: -14),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
+            instructionLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            instructionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            instructionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            instructionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            youTubeButton.topAnchor.constraint(equalTo: instructionLabel.bottomAnchor),
+            youTubeButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            youTubeButton.heightAnchor.constraint(equalToConstant: 44),
+            youTubeButton.widthAnchor.constraint(equalToConstant: 140),
+
             sourceButton.topAnchor.constraint(equalTo: youTubeButton.bottomAnchor, constant: 12),
             sourceButton.centerXAnchor.constraint(equalTo: youTubeButton.centerXAnchor),
             sourceButton.heightAnchor.constraint(equalToConstant: heightPadding),
             sourceButton.widthAnchor.constraint(equalToConstant: padding),
-            sourceButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -67,13 +84,27 @@ class MealInstructionsVC: FRActivityIndicatorVC {
             
             switch result {
             case .success(let mealDetailInstructions):
-                self.mealDetailInstruction = mealDetailInstructions
+                self.updateUIOnMainThread(with: mealDetailInstructions)
                 self.configureInstructionLabelOnMainThread()
-                
+
             case .failure(let error):
-                self.presentFRAlertOnMainThread(title: Alert.wrong, message: error.localizedDescription, buttonTitle: Alert.ok)
+                self.presentFRErrorAlertOnMainThread(message: error.localizedDescription)
                 self.popVCOnMainThread()
             }
+        }
+    }
+    
+    
+    private func updateUIOnMainThread(with mealDetailInstuctions: MealDetail) {
+        DispatchQueue.main.async {
+            if mealDetailInstuctions.youtubeLink.isEmpty {
+                self.youTubeButton.isHidden = true
+            }
+            if mealDetailInstuctions.sourceLink.isEmpty {
+                self.sourceButton.isHidden = true
+            }
+            
+            self.mealDetailInstruction = mealDetailInstuctions
         }
     }
     
@@ -81,7 +112,6 @@ class MealInstructionsVC: FRActivityIndicatorVC {
     private func configureInstructionLabelOnMainThread() {
         DispatchQueue.main.async {
             let formattedMealDetailInstruction = self.mealDetailInstruction?.instructions.replacingOccurrences(of: "\n", with: "\n\n")
-            
             self.instructionLabel.text = formattedMealDetailInstruction
         }
     }
@@ -90,20 +120,12 @@ class MealInstructionsVC: FRActivityIndicatorVC {
     private func configureButtons() {
         youTubeButton.addTarget(self, action: #selector(didTapYoutubeButton), for: .touchUpInside)
         sourceButton.addTarget(self, action: #selector(didTapSourceButton), for: .touchUpInside)
-
-        NSLayoutConstraint.activate([
-            youTubeButton.topAnchor.constraint(equalTo: instructionLabel.bottomAnchor),
-            youTubeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            youTubeButton.heightAnchor.constraint(equalToConstant: 44),
-            youTubeButton.widthAnchor.constraint(equalToConstant: 140),
-        ])
-  
     }
     
     
     @objc func didTapYoutubeButton() {
         guard let convertedLink = mealDetailInstruction?.youtubeLink else { return }
-            presentSafariVC(with: convertedLink)
+        presentSafariVC(with: convertedLink)
     }
     
     

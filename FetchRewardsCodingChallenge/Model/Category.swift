@@ -8,7 +8,7 @@
 import Foundation
 
 struct CategorySearchResults: Decodable {
-    
+
     let categories: [Category]
 } // END OF STRUCT
 

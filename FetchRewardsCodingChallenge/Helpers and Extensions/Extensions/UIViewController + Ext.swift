@@ -20,6 +20,11 @@ extension UIViewController {
     }
     
     
+    func presentFRErrorAlertOnMainThread(message: String) {
+        presentFRAlertOnMainThread(title: Alert.wrong, message: message, buttonTitle: Alert.ok)
+    }
+    
+    
     func presentSafariVC(with stringURL: String) {
         if stringURL.isEmpty {
             presentFRAlertOnMainThread(title: Alert.uhOh, message: Alert.link, buttonTitle: Alert.ok)
