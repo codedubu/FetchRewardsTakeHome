@@ -53,7 +53,7 @@ class MealInstructionsVC: FRActivityIndicatorVC {
         
         NSLayoutConstraint.activate([
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 4000),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
             instructionLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
