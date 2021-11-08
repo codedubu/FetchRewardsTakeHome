@@ -1,8 +1,12 @@
 # RecipeBuddy
-RecipeBuddy is a project used to pull data from the MealDB API. You are able to search through various recipes, see the steps/ingredient's required for preparation and even be lead to YouTube/article source links all within the app.
+RecipeBuddy pulls its' data from the MealDB API to allow users to explore various recipes organized into categories. Find your next meal idea with the help of RecipeBuddy! 
 
 ## Screenshots:
-
+![RecipeBuddy1](https://user-images.githubusercontent.com/10967353/140830606-a4bdcd35-a748-4cc2-b965-e9f5daa40098.png)
+![RecipeBuddy2](https://user-images.githubusercontent.com/10967353/140830626-97f16e9a-f55c-47e4-828a-d5549b378d15.png)
+![RecipeBuddy3](https://user-images.githubusercontent.com/10967353/140830639-7025411d-5790-4c86-a1c1-d4bc8cfd627d.png)
+![RecipeBuddy4](https://user-images.githubusercontent.com/10967353/140830646-746bb181-6d3e-4729-bebe-b6e6c2275bfe.png)
+![RecipeBuddy5](https://user-images.githubusercontent.com/10967353/140830648-fe972b8d-d5ac-4039-9265-e33321e8c960.png)
 
 ## Features: 
 - See recipes organized by category
