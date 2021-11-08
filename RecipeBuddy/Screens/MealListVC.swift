@@ -80,8 +80,8 @@ class MealListVC: RBActivityIndicatorVC {
         DispatchQueue.main.async {
             self.meals = meal.sorted { $0.name < $1.name}
             self.filteredMeals = meal.sorted { $0.name < $1.name}
+            self.tableView.reloadData()
         }
-        self.tableView.reloadDataOnMainThread()
     }
 } // END OF CLASS
 
@@ -119,7 +119,6 @@ extension MealListVC: UITableViewDataSource, UITableViewDelegate {
 extension MealListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        // Can we refactor, make cleaner?
      
         self.meals = filteredMeals
         

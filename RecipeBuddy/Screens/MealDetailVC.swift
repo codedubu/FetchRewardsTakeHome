@@ -94,15 +94,8 @@ class MealDetailVC: RBActivityIndicatorVC {
     private func updateUIOnMainThread(with mealDetails: MealDetail) {
         DispatchQueue.main.async {
             self.mealDetail = mealDetails
-        }
-        self.tableView.reloadDataOnMainThread()
-        self.downloadMealDetailImageOnMainThread()
-    }
-    
-    
-    private func downloadMealDetailImageOnMainThread() {
-        DispatchQueue.main.async {
             self.mealImageView.downloadImage(fromURL: self.meal.thumbnail)
+            self.tableView.reloadData()
         }
     }
     

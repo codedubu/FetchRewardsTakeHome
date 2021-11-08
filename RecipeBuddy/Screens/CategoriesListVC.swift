@@ -72,9 +72,6 @@ class CategoriesListVC: RBActivityIndicatorVC {
             self.categories = category.sorted { $0.name < $1.name }
             self.tableView.reloadData()
         }
-//        DispatchQueue.main.async {
-//        }
-//        self.tableView.reloadDataOnMainThread()
     }
 } // END OF CLASS
 
