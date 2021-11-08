@@ -13,6 +13,13 @@ RecipeBuddy pulls its' data from the MealDB API to allow users to explore variou
 - Look through and find recipes that fit what you're looking for
 - See ingredients required, full ingredient list, and even YouTube and article source links when available!
 
+## Developer Details:
+- 100% programmatic UI
+- Uses custom alerts for error handling
+- Custom assets for future interface changes
+- SafariViewController to display article/YouTube links
+- Caching on images 
+
 ## Building and Running the Application:
 - This project contains no dependencies or third party libraries. 
 - To run, simple clone/download, open the project file, and build to run.
